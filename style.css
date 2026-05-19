@@ -1,39 +1,21 @@
-/* ═══════════════════════════════════════
-   任務機 Mission Bot — Stylesheet v3
-   深色主題 | 置中 Logo | 1000px 寬度
-
-   PNG 尺寸：1000 × 1000px（正方形）
-   螢幕透明區校準值（視覺量測）：
-     top: 9%  left: 14%  width: 72%  height: 44%
-   ═══════════════════════════════════════ */
+/* 任務機 Mission Bot — Stylesheet v4（簡化版，無 PNG 框架） */
 
 :root {
-  /* 品牌色 */
-  --brand-yellow:   #F5C842;
-  --brand-teal:     #3CBFB4;
-  --brand-amber:    #E8901A;
-  --brand-orange:   #E8901A;
-
-  /* 深色背景系統 */
-  --bg-page:        #14110D;
-  --bg-header:      #0D0B08;
-  --bg-screen:      #FFFBF2;   /* 螢幕底色：暖白 */
-  --bg-cta:         #1C1810;
-
-  /* 文字 */
-  --text-light:     #F5F0E8;
-  --text-mid:       #B89E80;
-  --text-dark:      #2C1A0E;
-
-  /* 對話泡泡 */
-  --bubble-user:    #E8901A;
-  --bubble-bot-bg:  #FFF0D0;
-
-  --radius-sm:      10px;
-  --font:           'Nunito', -apple-system, 'Segoe UI', sans-serif;
+  --brand-yellow:  #F5C842;
+  --brand-teal:    #3CBFB4;
+  --brand-amber:   #E8901A;
+  --bg-page:       #14110D;
+  --bg-header:     #0D0B08;
+  --bg-chat:       #1A1610;
+  --bg-screen:     #FFFBF2;
+  --text-light:    #F5F0E8;
+  --text-mid:      #B89E80;
+  --text-dark:     #2C1A0E;
+  --bubble-user:   #E8901A;
+  --bubble-bot:    #FFF0D0;
+  --font: 'Nunito', -apple-system, 'Segoe UI', sans-serif;
 }
 
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -47,131 +29,79 @@ body {
   align-items: center;
 }
 
-/* ══════════════════════════════
-   Header：深色 + 標準字置中
-   ══════════════════════════════ */
+/* ── Header ── */
 header {
   width: 100%;
   background: var(--bg-header);
   border-bottom: 2px solid #2A2218;
-  padding: 12px 20px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-.header-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;   /* Logo 置中 */
-}
-
 .logo-img {
-  height: 38px;
+  height: 36px;
   width: auto;
   object-fit: contain;
 }
 
-/* ══════════════════════════════
-   Hero 標題區
-   ══════════════════════════════ */
+/* ── Hero ── */
 .hero {
   width: 100%;
-  max-width: 1000px;
-  padding: 28px 20px 14px;
+  max-width: 680px;
+  padding: 20px 20px 12px;
   text-align: center;
 }
 
 .hero-title {
-  font-size: clamp(1.15rem, 3.5vw, 1.65rem);
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
   font-weight: 900;
-  color: var(--brand-orange);
+  color: var(--brand-amber);
   line-height: 1.5;
-  letter-spacing: 0.01em;
 }
 
 .hero-desc {
-  margin-top: 10px;
-  font-size: 0.88rem;
+  margin-top: 6px;
+  font-size: 0.85rem;
   color: var(--text-mid);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* ══════════════════════════════
-   Main：控制台容器
-   ══════════════════════════════ */
+/* ── Main：對話區 ── */
 main {
+  width: 100%;
+  max-width: 680px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  width: 100%;
-  max-width: 1000px;      /* 控制台放大至 1000px */
-  padding: 0 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-/* ── 控制台（PNG + 螢幕疊層）── */
-.console-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;   /* PNG 1000×1000 正方形 */
-  user-select: none;
-}
-
-/* ─────────────────────────────
-   螢幕對話區
-   校準至 PNG 透明屏幕區域內部：
-     top:9% left:14% width:72% height:44%
-   若仍有偏差：
-     - 整體偏上 → 增加 top
-     - 整體偏左 → 增加 left
-     - 超出右側 → 減少 width
-     - 超出下方 → 減少 height
-   ───────────────────────────── */
-.screen-area {
-  position: absolute;
-  top:    9%;
-  left:   14%;
-  width:  72%;
-  height: 44%;
-  z-index: 5;
-
-  background: var(--bg-screen);
-  border-radius: 6px;
+#chat-messages {
+  background: var(--bg-chat);
+  border: 1px solid #2A2218;
+  border-radius: 16px;
+  padding: 16px 14px;
+  min-height: 320px;
+  max-height: 480px;
   overflow-y: auto;
-  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-
+  gap: 8px;
   scrollbar-width: thin;
   scrollbar-color: var(--brand-yellow) transparent;
 }
-.screen-area::-webkit-scrollbar { width: 4px; }
-.screen-area::-webkit-scrollbar-track { background: transparent; }
-.screen-area::-webkit-scrollbar-thumb {
-  background: var(--brand-yellow);
-  border-radius: 4px;
-}
-
-/* PNG 框架疊在最上層 */
-.console-frame {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 10;
-  pointer-events: none;
-  display: block;
-  vertical-align: bottom;
-}
+#chat-messages::-webkit-scrollbar { width: 4px; }
+#chat-messages::-webkit-scrollbar-thumb { background: var(--brand-yellow); border-radius: 4px; }
 
 /* ── 訊息 Bubble ── */
 .msg {
-  max-width: 90%;
-  font-size: 0.78rem;
-  line-height: 1.5;
+  max-width: 80%;
+  font-size: 0.88rem;
+  line-height: 1.55;
   word-break: break-word;
   animation: fadeUp 0.2s ease both;
 }
@@ -185,26 +115,26 @@ main {
   align-self: flex-end;
   background: var(--bubble-user);
   color: #fff;
-  border-radius: var(--radius-sm) var(--radius-sm) 2px var(--radius-sm);
-  padding: 5px 9px;
+  border-radius: 14px 14px 2px 14px;
+  padding: 8px 12px;
   font-weight: 700;
 }
 
 .msg.bot {
   align-self: flex-start;
-  background: var(--bubble-bot-bg);
+  background: var(--bubble-bot);
   color: var(--text-dark);
-  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 2px;
-  padding: 5px 9px;
+  border-radius: 14px 14px 14px 2px;
+  padding: 8px 12px;
   border-left: 3px solid var(--brand-teal);
 }
 
 .msg.thinking {
   align-self: flex-start;
-  color: #A09080;
+  color: var(--text-mid);
   font-style: italic;
-  font-size: 0.7rem;
-  padding: 3px 6px;
+  font-size: 0.78rem;
+  padding: 4px 8px;
   background: transparent;
 }
 
@@ -217,20 +147,18 @@ main {
   40%           { opacity: 1; }
 }
 
-/* ── 輸入區：緊貼控制台底部 ── */
+/* ── 輸入區 ── */
 .input-area {
-  width: 100%;
   display: flex;
   gap: 8px;
-  padding: 6px 0 4px;
-  margin-top: -6%;   /* 往上拉，緊貼 PNG 底部 */
+  padding: 10px 0 0;
 }
 
 #user-input {
   flex: 1;
   font-family: var(--font);
   font-size: 0.9rem;
-  padding: 12px 18px;
+  padding: 11px 18px;
   border: 2px solid #3A3020;
   border-radius: 999px;
   background: #1E1A12;
@@ -241,7 +169,7 @@ main {
 #user-input::placeholder { color: #6A5A40; }
 #user-input:focus {
   border-color: var(--brand-amber);
-  box-shadow: 0 0 0 3px rgba(232,144,26,0.20);
+  box-shadow: 0 0 0 3px rgba(232,144,26,0.18);
 }
 #user-input:disabled { background: #161310; color: #4A3A28; }
 
@@ -249,7 +177,7 @@ main {
   font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 800;
-  padding: 12px 20px;
+  padding: 11px 20px;
   background: var(--brand-teal);
   color: #fff;
   border: none;
@@ -262,24 +190,21 @@ main {
 #send-btn:hover:not(:disabled) { background: #2EA89E; transform: translateY(-1px); }
 #send-btn:disabled { background: #2A5A55; cursor: not-allowed; color: #7AACAA; }
 
-/* ══════════════════════════════
-   底部 CTA 區
-   ══════════════════════════════ */
+/* ── CTA ── */
 .cta-section {
   width: 100%;
-  max-width: 1000px;
-  background: var(--bg-cta);
-  border-top: 1px solid #2A2218;
-  padding: 24px 20px;
+  max-width: 680px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-top: 4px;
+  gap: 10px;
+  border-top: 1px solid #2A2218;
+  margin-top: 16px;
 }
 
 .cta-text {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-mid);
 }
@@ -292,41 +217,29 @@ main {
   background: var(--brand-yellow);
   border: 2px solid var(--brand-amber);
   border-radius: 999px;
-  padding: 10px 28px;
+  padding: 9px 26px;
   text-decoration: none;
-  white-space: nowrap;
   transition: background 0.2s, transform 0.15s;
   display: inline-block;
 }
-.btn-site:hover {
-  background: var(--brand-amber);
-  color: #fff;
-  transform: translateY(-2px);
-}
+.btn-site:hover { background: var(--brand-amber); color: #fff; transform: translateY(-2px); }
 
-/* ══════════════════════════════
-   Footer
-   ══════════════════════════════ */
+/* ── Footer ── */
 footer {
   width: 100%;
   text-align: center;
-  padding: 14px 12px 20px;
-  font-size: 0.72rem;
+  padding: 12px 12px 20px;
+  font-size: 0.7rem;
   color: #4A3A28;
 }
 
-/* ══════════════════════════════
-   RWD：手機（≤600px）
-   ══════════════════════════════ */
-@media (max-width: 600px) {
-  .logo-img { height: 30px; }
-  .hero { padding: 18px 14px 10px; }
-  .hero-title { font-size: 1.05rem; }
-  main { padding: 0 6px; }
-  .screen-area { padding: 6px 8px; gap: 5px; }
-  .msg { font-size: 0.7rem; }
-  #user-input { font-size: 0.85rem; padding: 10px 14px; }
-  #send-btn { font-size: 0.85rem; padding: 10px 14px; min-width: 72px; }
-  .cta-section { padding: 18px 14px; }
-  .input-area { margin-top: -4%; }
+/* ── RWD ── */
+@media (max-width: 480px) {
+  .hero { padding: 14px 14px 8px; }
+  .hero-title { font-size: 1rem; }
+  main { padding: 0 10px; }
+  #chat-messages { min-height: 260px; max-height: 380px; padding: 12px 10px; }
+  .msg { font-size: 0.82rem; }
+  #user-input, #send-btn { font-size: 0.85rem; padding: 10px 14px; }
+  #send-btn { min-width: 72px; }
 }

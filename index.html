@@ -11,54 +11,30 @@
 </head>
 <body>
 
-  <!-- ══ Header：深色背景 + 標準字 Logo 置中 ══ -->
   <header>
-    <div class="header-inner">
-      <img src="assets/brand/logo-wordmark.png" alt="怪怪整理師 Wacky Tidy Pals" class="logo-img">
-    </div>
+    <img src="assets/brand/logo-wordmark.png" alt="怪怪整理師 Wacky Tidy Pals" class="logo-img">
   </header>
 
-  <!-- ══ Hero 標題區 ══ -->
   <section class="hero">
     <h1 class="hero-title">透過任務機<br>你可以更了解怪怪整理師！</h1>
-    <p class="hero-desc">整理小隊正在待命！試著問問角色個性、品牌故事，或任何你對怪怪整理師的好奇。</p>
+    <p class="hero-desc">整理小隊正在待命！試著問問角色個性、品牌故事，或任何你的好奇。</p>
   </section>
 
-  <!-- ══ Main：控制台主體 ══ -->
   <main>
-    <div class="console-wrap">
-      <!-- 對話顯示區（在 PNG 透明螢幕後面顯示） -->
-      <div class="screen-area" id="chat-messages" role="log" aria-live="polite"></div>
-      <!-- PNG 框架疊在最上層，pointer-events:none 讓點擊穿透 -->
-      <img class="console-frame" src="assets/mission-console.png" alt="任務機控制台" draggable="false">
-    </div>
-
-    <!-- 輸入區 -->
+    <div id="chat-messages" role="log" aria-live="polite"></div>
     <div class="input-area">
-      <input
-        type="text"
-        id="user-input"
-        placeholder="問問整理小隊任何問題…"
-        autocomplete="off"
-        maxlength="200"
-      >
-      <button id="send-btn" aria-label="送出">
-        <span id="btn-label">出發 →</span>
-      </button>
+      <input type="text" id="user-input" placeholder="問問整理小隊任何問題…" autocomplete="off" maxlength="200">
+      <button id="send-btn" aria-label="送出"><span id="btn-label">出發 →</span></button>
     </div>
   </main>
 
-  <!-- ══ 底部 CTA ══ -->
   <section class="cta-section">
     <p class="cta-text">還想知道更多？</p>
-    <a class="btn-site" href="https://wackytidypals.framer.media/" target="_blank" rel="noopener">
-      前往官方網站 ↗
-    </a>
+    <a class="btn-site" href="https://wackytidypals.framer.media/" target="_blank" rel="noopener">前往官方網站 ↗</a>
   </section>
 
-  <!-- ══ Footer ══ -->
   <footer>
-    <p>© 2026 MixCode Studio. All rights reserved. &nbsp;｜&nbsp; 怪怪整理師 Wacky Tidy Pals</p>
+    <p>© 2026 MixCode Studio. All rights reserved. ｜ 怪怪整理師 Wacky Tidy Pals</p>
   </footer>
 
   <script src="script.js"></script>
