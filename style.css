@@ -1,4 +1,4 @@
-/* 任務機 Mission Bot — Stylesheet v4（簡化版，無 PNG 框架） */
+/* 任務機 Mission Bot — Stylesheet v5 */
 
 :root {
   --brand-yellow:  #F5C842;
@@ -7,7 +7,6 @@
   --bg-page:       #14110D;
   --bg-header:     #0D0B08;
   --bg-chat:       #1A1610;
-  --bg-screen:     #FFFBF2;
   --text-light:    #F5F0E8;
   --text-mid:      #B89E80;
   --text-dark:     #2C1A0E;
@@ -29,14 +28,15 @@ body {
   align-items: center;
 }
 
-/* ── Header ── */
+/* ══ Header ══ */
 header {
   width: 100%;
   background: var(--bg-header);
   border-bottom: 2px solid #2A2218;
   padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: center;   /* 置中 */
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -45,14 +45,14 @@ header {
 .logo-img {
   height: 36px;
   width: auto;
-  object-fit: contain;
+  display: block;            /* 消除行內間距 */
 }
 
-/* ── Hero ── */
+/* ══ Hero ══ */
 .hero {
   width: 100%;
   max-width: 680px;
-  padding: 20px 20px 12px;
+  padding: 22px 20px 14px;
   text-align: center;
 }
 
@@ -70,24 +70,25 @@ header {
   line-height: 1.6;
 }
 
-/* ── Main：對話區 ── */
+/* ══ Main ══ */
 main {
   width: 100%;
   max-width: 680px;
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 12px;                 /* 對話框與輸入框之間明確間距 */
 }
 
+/* ── 對話紀錄區（固定高度，獨立 scroll） ── */
 #chat-messages {
+  height: 400px;             /* 固定高度：不會跟輸入框黏在一起 */
+  flex-shrink: 0;
   background: var(--bg-chat);
   border: 1px solid #2A2218;
   border-radius: 16px;
   padding: 16px 14px;
-  min-height: 320px;
-  max-height: 480px;
-  overflow-y: auto;
+  overflow-y: auto;          /* 內容超過時獨立滾動 */
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -95,7 +96,10 @@ main {
   scrollbar-color: var(--brand-yellow) transparent;
 }
 #chat-messages::-webkit-scrollbar { width: 4px; }
-#chat-messages::-webkit-scrollbar-thumb { background: var(--brand-yellow); border-radius: 4px; }
+#chat-messages::-webkit-scrollbar-thumb {
+  background: var(--brand-yellow);
+  border-radius: 4px;
+}
 
 /* ── 訊息 Bubble ── */
 .msg {
@@ -135,7 +139,6 @@ main {
   font-style: italic;
   font-size: 0.78rem;
   padding: 4px 8px;
-  background: transparent;
 }
 
 .dots span { display: inline-block; animation: blink 1.2s infinite; }
@@ -147,18 +150,19 @@ main {
   40%           { opacity: 1; }
 }
 
-/* ── 輸入區 ── */
+/* ── 輸入區（與對話框分開，不互相干擾） ── */
 .input-area {
+  flex-shrink: 0;
   display: flex;
   gap: 8px;
-  padding: 10px 0 0;
+  padding-bottom: 4px;
 }
 
 #user-input {
   flex: 1;
   font-family: var(--font);
   font-size: 0.9rem;
-  padding: 11px 18px;
+  padding: 12px 18px;
   border: 2px solid #3A3020;
   border-radius: 999px;
   background: #1E1A12;
@@ -177,7 +181,7 @@ main {
   font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 800;
-  padding: 11px 20px;
+  padding: 12px 20px;
   background: var(--brand-teal);
   color: #fff;
   border: none;
@@ -190,7 +194,7 @@ main {
 #send-btn:hover:not(:disabled) { background: #2EA89E; transform: translateY(-1px); }
 #send-btn:disabled { background: #2A5A55; cursor: not-allowed; color: #7AACAA; }
 
-/* ── CTA ── */
+/* ══ CTA ══ */
 .cta-section {
   width: 100%;
   max-width: 680px;
@@ -200,7 +204,7 @@ main {
   align-items: center;
   gap: 10px;
   border-top: 1px solid #2A2218;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .cta-text {
@@ -224,7 +228,7 @@ main {
 }
 .btn-site:hover { background: var(--brand-amber); color: #fff; transform: translateY(-2px); }
 
-/* ── Footer ── */
+/* ══ Footer ══ */
 footer {
   width: 100%;
   text-align: center;
@@ -233,12 +237,12 @@ footer {
   color: #4A3A28;
 }
 
-/* ── RWD ── */
+/* ══ RWD ══ */
 @media (max-width: 480px) {
-  .hero { padding: 14px 14px 8px; }
+  .hero { padding: 14px 14px 10px; }
   .hero-title { font-size: 1rem; }
-  main { padding: 0 10px; }
-  #chat-messages { min-height: 260px; max-height: 380px; padding: 12px 10px; }
+  main { padding: 0 10px; gap: 10px; }
+  #chat-messages { height: 320px; padding: 12px 10px; }
   .msg { font-size: 0.82rem; }
   #user-input, #send-btn { font-size: 0.85rem; padding: 10px 14px; }
   #send-btn { min-width: 72px; }
