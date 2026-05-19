@@ -97,8 +97,8 @@ function appendUserMessage(text) {
 function appendBotMessage(text) {
   const el = document.createElement('div');
   el.className = 'msg bot';
-  // 換行符號轉成 <br>
-  el.innerHTML = escapeHtml(text).replace(/\n/g, '<br>');
+  // 使用 marked 渲染 Markdown（**粗體**、- 列表、換行等）
+  el.innerHTML = marked.parse(text);
   chatEl.appendChild(el);
   scrollToBottom();
   return el;
