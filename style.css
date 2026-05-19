@@ -1,25 +1,39 @@
 /* ═══════════════════════════════════════
-   任務機 Mission Bot — Stylesheet
+   任務機 Mission Bot — Stylesheet v2
+   深色主題重設計
+
    PNG 尺寸：1000 × 1000px（正方形）
-   螢幕透明區位置（估算）：
+   螢幕透明區位置（估算，可微調）：
      top: 6%  left: 11%  width: 78%  height: 52%
    ═══════════════════════════════════════ */
 
 :root {
-  --brand-yellow:  #F5C842;
-  --brand-teal:    #3CBFB4;
-  --brand-amber:   #E8901A;
-  --bg-page:       #FFF5E0;
-  --bg-screen:     #FFFBF2;   /* 螢幕底色：暖白 */
-  --text-dark:     #2C1A0E;
-  --text-mid:      #7A5C3A;
-  --text-light:    #B89E80;
-  --bubble-user:   #E8901A;
-  --bubble-bot-bg: #FFF0D0;
-  --shadow:        0 8px 40px rgba(0,0,0,0.12);
-  --radius-lg:     20px;
-  --radius-sm:     12px;
-  --font:          'Nunito', -apple-system, 'Segoe UI', sans-serif;
+  /* 品牌色 */
+  --brand-yellow:   #F5C842;
+  --brand-teal:     #3CBFB4;
+  --brand-amber:    #E8901A;
+  --brand-orange:   #E8901A;
+
+  /* 深色背景系統 */
+  --bg-page:        #14110D;   /* 頁面底色：近黑暖棕 */
+  --bg-header:      #0D0B08;   /* Header 更深 */
+  --bg-screen:      #FFFBF2;   /* 螢幕底色：暖白（對話區背景） */
+  --bg-cta:         #1C1810;   /* CTA 區底色 */
+
+  /* 文字 */
+  --text-light:     #F5F0E8;
+  --text-mid:       #B89E80;
+  --text-dark:      #2C1A0E;   /* 對話區深色文字 */
+
+  /* 對話泡泡 */
+  --bubble-user:    #E8901A;
+  --bubble-bot-bg:  #FFF0D0;
+
+  /* 其他 */
+  --shadow:         0 8px 40px rgba(0,0,0,0.5);
+  --radius-lg:      20px;
+  --radius-sm:      12px;
+  --font:           'Nunito', -apple-system, 'Segoe UI', sans-serif;
 }
 
 /* ── Reset ── */
@@ -29,95 +43,129 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
   background: var(--bg-page);
-  color: var(--text-dark);
+  color: var(--text-light);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ══ Header ══ */
+/* ══════════════════════════════
+   Header
+   深色背景 | 左：標準字 Logo | 右：四角色頭像
+   ══════════════════════════════ */
 header {
   width: 100%;
-  background: #fff;
-  border-bottom: 2px solid var(--brand-yellow);
-  padding: 12px 24px;
+  background: var(--bg-header);
+  border-bottom: 2px solid #2A2218;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .header-inner {
-  max-width: 600px;
+  max-width: 680px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
-.header-brand {
+/* 標準字 Logo */
+.header-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-shrink: 0;
 }
 
-.header-icon { font-size: 1.5rem; }
-
-.header-title {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  line-height: 1.2;
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  /* 黃色標準字在深色背景上天然顯眼，不需要 filter */
 }
 
-.header-sub {
-  font-size: 0.72rem;
+/* 角色頭像群組 */
+.header-chars {
+  display: flex;
+  align-items: flex-end;   /* 底部對齊，讓頭像自然站立感 */
+  gap: 4px;
+}
+
+.char-avatar {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  /* 略微錯落：奇數位稍高 */
+}
+.char-avatar:nth-child(1) { transform: translateY(0); }
+.char-avatar:nth-child(2) { transform: translateY(4px); }
+.char-avatar:nth-child(3) { transform: translateY(2px); }
+.char-avatar:nth-child(4) { transform: translateY(5px); }
+.char-avatar:hover { transform: translateY(-4px) !important; }
+
+/* ══════════════════════════════
+   Hero 標題區
+   ══════════════════════════════ */
+.hero {
+  width: 100%;
+  max-width: 680px;
+  padding: 28px 20px 16px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 900;
+  color: var(--brand-orange);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.hero-title .slash {
   color: var(--text-mid);
+  font-weight: 400;
 }
 
-.btn-site {
-  font-family: var(--font);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  background: var(--brand-yellow);
-  border: 2px solid var(--brand-amber);
-  border-radius: 999px;
-  padding: 6px 16px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.2s, transform 0.1s;
+.hero-desc {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.7;
 }
-.btn-site:hover { background: var(--brand-amber); color: #fff; transform: translateY(-1px); }
 
-/* ══ Main ══ */
+/* ══════════════════════════════
+   Main：控制台容器
+   ══════════════════════════════ */
 main {
   flex: 1;
   width: 100%;
-  max-width: 600px;
-  padding: 24px 16px 0;
+  max-width: 680px;
+  padding: 0 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
 }
 
-/* ══ Console（PNG + 螢幕疊層）══ */
+/* ── 控制台（PNG + 螢幕疊層）── */
 .console-wrap {
   position: relative;
   width: 100%;
-  /* 維持 1:1 aspect ratio（PNG 是 1000×1000） */
+  /* PNG 是 1000×1000 正方形 */
   aspect-ratio: 1 / 1;
   user-select: none;
 }
 
-/* 螢幕對話區（在 PNG 背後，透過透明區域顯示） */
+/* 螢幕對話區：在 PNG 背後，透過透明區顯示 */
 .screen-area {
   position: absolute;
-  /* 依 PNG 透明屏幕位置校準：
-     top=6%  left=11%  width=78%  height=52%
-     若視覺有偏差，微調這四個數值即可 */
+  /*
+    依 PNG 透明屏幕位置校準；
+    若視覺有偏差，微調這四個數值即可。
+  */
   top:    6%;
   left:   11%;
   width:  78%;
@@ -132,15 +180,18 @@ main {
   flex-direction: column;
   gap: 8px;
 
-  /* 隱藏捲軸但保留功能 */
+  /* 捲軸美化 */
   scrollbar-width: thin;
   scrollbar-color: var(--brand-yellow) transparent;
 }
 .screen-area::-webkit-scrollbar { width: 4px; }
 .screen-area::-webkit-scrollbar-track { background: transparent; }
-.screen-area::-webkit-scrollbar-thumb { background: var(--brand-yellow); border-radius: 4px; }
+.screen-area::-webkit-scrollbar-thumb {
+  background: var(--brand-yellow);
+  border-radius: 4px;
+}
 
-/* PNG 框架疊在最上層，pointer-events: none 讓點擊穿透 */
+/* PNG 框架疊在最上層，pointer-events:none 讓點擊穿透 */
 .console-frame {
   position: absolute;
   top: 0; left: 0;
@@ -148,15 +199,14 @@ main {
   z-index: 10;
   pointer-events: none;
   display: block;
-  /* 去除行內間距 */
   vertical-align: bottom;
 }
 
-/* ══ 訊息 Bubble ══ */
+/* ── 訊息 Bubble ── */
 .msg {
-  max-width: 90%;
+  max-width: 92%;
   font-size: 0.78rem;
-  line-height: 1.5;
+  line-height: 1.55;
   word-break: break-word;
   animation: fadeUp 0.2s ease both;
 }
@@ -166,17 +216,17 @@ main {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* 使用者訊息：靠右，橘色 */
+/* 使用者：靠右，橘色 */
 .msg.user {
   align-self: flex-end;
   background: var(--bubble-user);
   color: #fff;
   border-radius: var(--radius-sm) var(--radius-sm) 2px var(--radius-sm);
   padding: 6px 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* 機器人訊息：靠左，暖奶油色 */
+/* 機器人：靠左，暖奶油色 */
 .msg.bot {
   align-self: flex-start;
   background: var(--bubble-bot-bg);
@@ -189,7 +239,7 @@ main {
 /* 思考中動畫 */
 .msg.thinking {
   align-self: flex-start;
-  color: var(--text-light);
+  color: #A09080;
   font-style: italic;
   font-size: 0.72rem;
   padding: 4px 8px;
@@ -208,14 +258,13 @@ main {
   40%           { opacity: 1; }
 }
 
-/* ══ Input Area ══ */
+/* ── 輸入區 ── */
 .input-area {
   width: 100%;
   display: flex;
   gap: 8px;
-  padding: 14px 0 8px;
-  /* 與控制台底部對齊，考慮 PNG 底部有裝飾留白 */
-  margin-top: -2%;
+  padding: 10px 0 4px;
+  margin-top: -2%;  /* 與控制台底部稍微接近 */
 }
 
 #user-input {
@@ -223,18 +272,19 @@ main {
   font-family: var(--font);
   font-size: 0.9rem;
   padding: 12px 18px;
-  border: 2px solid var(--brand-yellow);
+  border: 2px solid #3A3020;
   border-radius: 999px;
-  background: #fff;
-  color: var(--text-dark);
+  background: #1E1A12;
+  color: var(--text-light);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+#user-input::placeholder { color: #6A5A40; }
 #user-input:focus {
   border-color: var(--brand-amber);
-  box-shadow: 0 0 0 3px rgba(232,144,26,0.15);
+  box-shadow: 0 0 0 3px rgba(232,144,26,0.20);
 }
-#user-input:disabled { background: #f5f0e8; }
+#user-input:disabled { background: #161310; color: #4A3A28; }
 
 #send-btn {
   font-family: var(--font);
@@ -251,24 +301,79 @@ main {
   min-width: 84px;
 }
 #send-btn:hover:not(:disabled) { background: #2EA89E; transform: translateY(-1px); }
-#send-btn:disabled { background: #b0ccc9; cursor: not-allowed; }
+#send-btn:disabled { background: #2A5A55; cursor: not-allowed; color: #7AACAA; }
 
-/* ══ Footer ══ */
+/* ══════════════════════════════
+   底部 CTA 區
+   ══════════════════════════════ */
+.cta-section {
+  width: 100%;
+  max-width: 680px;
+  background: var(--bg-cta);
+  border-top: 1px solid #2A2218;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cta-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-mid);
+  letter-spacing: 0.02em;
+}
+
+.btn-site {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  background: var(--brand-yellow);
+  border: 2px solid var(--brand-amber);
+  border-radius: 999px;
+  padding: 10px 28px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-site:hover {
+  background: var(--brand-amber);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════
+   Footer
+   ══════════════════════════════ */
 footer {
   width: 100%;
   text-align: center;
-  padding: 16px 12px 20px;
+  padding: 16px 12px 24px;
   font-size: 0.72rem;
-  color: var(--text-light);
+  color: #4A3A28;
 }
 
-/* ══ RWD：手機（≤480px）══ */
+/* ══════════════════════════════
+   RWD：手機（≤480px）
+   ══════════════════════════════ */
 @media (max-width: 480px) {
-  .header-sub { display: none; }
-  .btn-site { padding: 5px 12px; font-size: 0.75rem; }
-  main { padding: 12px 8px 0; }
+  .hero { padding: 20px 16px 12px; }
+  .hero-title { font-size: 1rem; }
+
+  .logo-img { height: 32px; }
+  .char-avatar { height: 42px; }
+
+  main { padding: 0 8px; }
   .screen-area { padding: 8px 10px; gap: 6px; }
   .msg { font-size: 0.72rem; }
+
   #user-input { font-size: 0.85rem; padding: 10px 14px; }
   #send-btn { font-size: 0.85rem; padding: 10px 14px; min-width: 72px; }
+
+  .cta-section { padding: 20px 16px; margin-top: 4px; }
 }

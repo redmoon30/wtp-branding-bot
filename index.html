@@ -6,48 +6,42 @@
   <title>任務機｜怪怪整理師</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ══ Header ══ -->
+  <!-- ══ Header：深色背景 + 標準字 Logo + 四位角色頭像 ══ -->
   <header>
     <div class="header-inner">
-      <div class="header-brand">
-        <span class="header-icon">⚙️</span>
-        <div>
-          <div class="header-title">任務機 Mission Bot</div>
-          <div class="header-sub">怪怪整理師 · 亂亂的，才好玩！</div>
-        </div>
+      <div class="header-logo">
+        <img src="assets/brand/logo-wordmark.png" alt="怪怪整理師 Wacky Tidy Pals" class="logo-img">
       </div>
-      <a class="btn-site" href="https://wackytidypals.framer.media/" target="_blank" rel="noopener">
-        官方網站 ↗
-      </a>
+      <div class="header-chars">
+        <img src="assets/brand/dydi.png"  alt="迪迪" class="char-avatar" title="迪迪">
+        <img src="assets/brand/clerk.png" alt="克克" class="char-avatar" title="克克">
+        <img src="assets/brand/leane.png" alt="林林" class="char-avatar" title="林林">
+        <img src="assets/brand/tailo.png" alt="泰泰" class="char-avatar" title="泰泰">
+      </div>
     </div>
   </header>
 
-  <!-- ══ Main ══ -->
+  <!-- ══ Hero 標題區 ══ -->
+  <section class="hero">
+    <h1 class="hero-title">透過任務機<span class="slash"> / </span>你可以更了解怪怪整理師！</h1>
+    <p class="hero-desc">整理小隊正在待命！試著問問角色個性、品牌故事，或任何你對怪怪整理師的好奇。</p>
+  </section>
+
+  <!-- ══ Main：控制台主體 ══ -->
   <main>
-
-    <!-- 控制台容器：PNG 框架 + 對話疊加 -->
     <div class="console-wrap">
-
-      <!-- 對話顯示區（在 PNG 後面，透過透明屏幕顯示） -->
-      <div class="screen-area" id="chat-messages" role="log" aria-live="polite">
-        <!-- 歡迎訊息由 script.js 注入 -->
-      </div>
-
-      <!-- PNG 機器任務機框架（疊在最上層） -->
-      <img
-        class="console-frame"
-        src="assets/mission-console.png"
-        alt="任務機控制台"
-        draggable="false"
-      >
+      <!-- 對話顯示區（在 PNG 透明螢幕後面顯示） -->
+      <div class="screen-area" id="chat-messages" role="log" aria-live="polite"></div>
+      <!-- PNG 框架疊在最上層，pointer-events:none 讓點擊穿透 -->
+      <img class="console-frame" src="assets/mission-console.png" alt="任務機控制台" draggable="false">
     </div>
 
-    <!-- 輸入區（在控制台下方） -->
+    <!-- 輸入區 -->
     <div class="input-area">
       <input
         type="text"
@@ -60,8 +54,15 @@
         <span id="btn-label">出發 →</span>
       </button>
     </div>
-
   </main>
+
+  <!-- ══ 底部 CTA ══ -->
+  <section class="cta-section">
+    <p class="cta-text">還想知道更多？</p>
+    <a class="btn-site" href="https://wackytidypals.framer.media/" target="_blank" rel="noopener">
+      前往官方網站 ↗
+    </a>
+  </section>
 
   <!-- ══ Footer ══ -->
   <footer>
