@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>任務機｜怪怪整理師</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══ Header ══ -->
+  <header>
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="header-icon">⚙️</span>
+        <div>
+          <div class="header-title">任務機 Mission Bot</div>
+          <div class="header-sub">怪怪整理師 · 亂亂的，才好玩！</div>
+        </div>
+      </div>
+      <a class="btn-site" href="https://wackytidypals.framer.media/" target="_blank" rel="noopener">
+        官方網站 ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- ══ Main ══ -->
+  <main>
+
+    <!-- 控制台容器：PNG 框架 + 對話疊加 -->
+    <div class="console-wrap">
+
+      <!-- 對話顯示區（在 PNG 後面，透過透明屏幕顯示） -->
+      <div class="screen-area" id="chat-messages" role="log" aria-live="polite">
+        <!-- 歡迎訊息由 script.js 注入 -->
+      </div>
+
+      <!-- PNG 機器任務機框架（疊在最上層） -->
+      <img
+        class="console-frame"
+        src="assets/mission-console.png"
+        alt="任務機控制台"
+        draggable="false"
+      >
+    </div>
+
+    <!-- 輸入區（在控制台下方） -->
+    <div class="input-area">
+      <input
+        type="text"
+        id="user-input"
+        placeholder="問問整理小隊任何問題…"
+        autocomplete="off"
+        maxlength="200"
+      >
+      <button id="send-btn" aria-label="送出">
+        <span id="btn-label">出發 →</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ══ Footer ══ -->
+  <footer>
+    <p>© 2026 MixCode Studio. All rights reserved. &nbsp;｜&nbsp; 怪怪整理師 Wacky Tidy Pals</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
